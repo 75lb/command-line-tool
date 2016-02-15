@@ -22,7 +22,7 @@ Stop the process with the supplied exit code.
 | --- | --- | --- |
 | exitCode | <code>number</code> | the exit code |
 | [options] | <code>object</code> |  |
-| [options.message] | <code>string</code> &#124; <code>string</code> | One or more messages to be written to stderr before exiting. If the exit code is greater than 0 they will be formatted red. |
+| [options.message] | <code>string</code> &#124; <code>Array.&lt;string&gt;</code> | One or more messages to be written to stderr before exiting. If the exit code is greater than 0 they will be formatted red. |
 | [options.usage] | <code>string</code> | Usage guidance, written to stderr without additional formatting. |
 
 
