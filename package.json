@@ -12,17 +12,25 @@
   },
   "scripts": {
     "test": "tape test/*.js",
-    "docs": "jsdoc2md -t jsdoc2md/README.hbs lib/*.js > README.md; echo"
+    "docs": "jsdoc2md -t jsdoc2md/README.hbs lib/*.js > README.md; echo",
+    "es5": "babel --presets babel-preset-es2015 --no-comments lib --out-dir es5"
   },
   "dependencies": {
     "ansi-escape-sequences": "^2.2.2",
-    "array-back": "^1.0.2",
-    "command-line-args": "^2.1.6",
+    "array-back": "^1.0.3",
+    "command-line-args": "^3.0.0",
+    "command-line-usage": "^3.0.1",
     "test-value": "^2.0.0",
     "typical": "^2.4.2"
   },
   "devDependencies": {
-    "jsdoc-to-markdown": "^1.3.3",
+    "babel-preset-es2015": "^6.9.0",
+    "jsdoc-to-markdown": "^1.3.6",
     "tape": "^4.5.1"
+  },
+  "standard": {
+    "ignore": [
+      "es5"
+    ]
   }
 }
