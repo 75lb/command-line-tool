@@ -1,29 +1,77 @@
 [![view on npm](http://img.shields.io/npm/v/command-line-tool.svg)](https://www.npmjs.org/package/command-line-tool)
-[![npm module downloads per month](http://img.shields.io/npm/dm/command-line-tool.svg)](https://www.npmjs.org/package/command-line-tool)
+[![npm module downloads](http://img.shields.io/npm/dt/command-line-tool.svg)](https://www.npmjs.org/package/command-line-tool)
 [![Build Status](https://travis-ci.org/75lb/command-line-tool.svg?branch=master)](https://travis-ci.org/75lb/command-line-tool)
 [![Dependency Status](https://david-dm.org/75lb/command-line-tool.svg)](https://david-dm.org/75lb/command-line-tool)
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](https://github.com/feross/standard)
 
 <a name="module_command-line-tool"></a>
+
 ## command-line-tool
 Some conventional operations used in command-line tools.
 
 **Example**  
 ```js
-const tool = require('command-line-tool')
+const CommandLineTool = require('command-line-tool')
 ```
-<a name="module_command-line-tool.stop"></a>
-### tool.stop(exitCode, [options])
-Stop the process with the supplied exit code.
 
-**Kind**: static method of <code>[command-line-tool](#module_command-line-tool)</code>  
+* [command-line-tool](#module_command-line-tool)
+    * [CommandLineTool](#exp_module_command-line-tool--CommandLineTool) ⏏
+        * [.stop([message])](#module_command-line-tool--CommandLineTool+stop)
+        * [.printError(message)](#module_command-line-tool--CommandLineTool+printError)
+        * [.halt([err], [options])](#module_command-line-tool--CommandLineTool+halt)
+        * [.getOptions(definitions, usageSections)](#module_command-line-tool--CommandLineTool+getOptions) ⇒ <code>object</code>
+
+<a name="exp_module_command-line-tool--CommandLineTool"></a>
+
+### CommandLineTool ⏏
+**Kind**: Exported class  
+<a name="module_command-line-tool--CommandLineTool+stop"></a>
+
+#### tool.stop([message])
+Print the supplied messages then stop the process (no exit code).
+
+**Kind**: instance method of <code>[CommandLineTool](#exp_module_command-line-tool--CommandLineTool)</code>  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| exitCode | <code>number</code> | the exit code |
+| [message] | <code>string</code> &#124; <code>Array.&lt;string&gt;</code> | One or more messages to be written to stderr before exiting. May contain `ansi.format` markup. |
+
+<a name="module_command-line-tool--CommandLineTool+printError"></a>
+
+#### tool.printError(message)
+Prints one or more strings in red to stderr.
+
+**Kind**: instance method of <code>[CommandLineTool](#exp_module_command-line-tool--CommandLineTool)</code>  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| message | <code>string</code> &#124; <code>Array.&lt;string&gt;</code> | input message(s) |
+
+<a name="module_command-line-tool--CommandLineTool+halt"></a>
+
+#### tool.halt([err], [options])
+Stop the process with an error message.
+
+**Kind**: instance method of <code>[CommandLineTool](#exp_module_command-line-tool--CommandLineTool)</code>  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| [err] | <code>Error</code> | the error instance |
 | [options] | <code>object</code> |  |
-| [options.message] | <code>string</code> &#124; <code>Array.&lt;string&gt;</code> | One or more messages to be written to stderr before exiting. If the exit code is greater than 0 they will be formatted red. |
-| [options.usage] | <code>string</code> | Usage guidance, written to stderr without additional formatting. |
+| [options.exitCode] | <code>number</code> | defaults to 1 |
+| [options.stack] | <code>boolean</code> | defaults to false |
+
+<a name="module_command-line-tool--CommandLineTool+getOptions"></a>
+
+#### tool.getOptions(definitions, usageSections) ⇒ <code>object</code>
+Parse the command-line options.
+
+**Kind**: instance method of <code>[CommandLineTool](#exp_module_command-line-tool--CommandLineTool)</code>  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| definitions | <code>Array.&lt;OptionDefinitions&gt;</code> | to be passed to command-line-args |
+| usageSections | <code>Array.&lt;section&gt;</code> | to be passed to command-line-usage |
 
 
 * * *
