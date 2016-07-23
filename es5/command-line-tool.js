@@ -7,13 +7,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 var arrayify = require('array-back');
 var ansi = require('ansi-escape-sequences');
 var t = require('typical');
-var where = require('test-value').where;
 
 var CommandLineTool = function () {
   function CommandLineTool() {
     _classCallCheck(this, CommandLineTool);
-
-    this.usage = null;
   }
 
   _createClass(CommandLineTool, [{
@@ -26,52 +23,41 @@ var CommandLineTool = function () {
     }
   }, {
     key: 'printError',
-    value: function printError(err) {
-      console.error(ansi.format(t.isString(err) ? err : err.stack, 'red'));
+    value: function printError(message) {
+      arrayify(message).forEach(function (msg) {
+        console.error(ansi.format(msg, 'red'));
+      });
     }
   }, {
     key: 'halt',
-    value: function halt(err) {
-      var _ref = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
-
-      var _ref$exitCode = _ref.exitCode;
-      var exitCode = _ref$exitCode === undefined ? 1 : _ref$exitCode;
-
-      if (err.code === 'EPIPE') {
-        process.exit(0);
-      } else {
-          this.printError(err);
-          process.exit(exitCode);
-        }
+    value: function halt(err, options) {
+      options = Object.assign({ exitCode: 1 }, options);
+      if (err) {
+        if (err.code === 'EPIPE') {
+          process.exit(0);
+        } else {
+            this.printError(t.isString(err) ? err : options.stack ? err.stack : err.message, options);
+          }
+      }
+      process.exit(options.exitCode);
     }
   }, {
-    key: 'getOptions',
-    value: function getOptions(definitions, usageSections) {
+    key: 'getCli',
+    value: function getCli(definitions, usageSections, argv) {
       definitions = arrayify(definitions);
-      if (!definitions.some(where({ name: 'help' }))) {
-        definitions.push({
-          name: 'help',
-          alias: 'h',
-          type: Boolean,
-          description: 'Print usage information.'
-        });
-      }
       var commandLineArgs = require('command-line-args');
       var commandLineUsage = require('command-line-usage');
 
-      this.usage = commandLineUsage(usageSections);
+      var usage = usageSections ? commandLineUsage(usageSections) : '';
       var options = void 0;
       try {
-        options = commandLineArgs(definitions);
+        options = commandLineArgs(definitions, argv);
       } catch (err) {
-        this.printError(err.message);
-        console.error(this.usage);
+        this.printError(err.name === 'UNKNOWN_OPTION' ? err.message : err);
+        console.error(usage);
         this.halt();
       }
-      if (options.help || options._all && options._all.help) {
-        this.stop(this.usage);
-      }
-      return options;
+      return { options: options, usage: usage };
     }
   }]);
 

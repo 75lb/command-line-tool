@@ -9,17 +9,13 @@
 ## command-line-tool
 Some conventional operations used in command-line tools.
 
-**Example**  
-```js
-const CommandLineTool = require('command-line-tool')
-```
 
 * [command-line-tool](#module_command-line-tool)
     * [CommandLineTool](#exp_module_command-line-tool--CommandLineTool) ⏏
         * [.stop([message])](#module_command-line-tool--CommandLineTool+stop)
         * [.printError(message)](#module_command-line-tool--CommandLineTool+printError)
         * [.halt([err], [options])](#module_command-line-tool--CommandLineTool+halt)
-        * [.getOptions(definitions, usageSections)](#module_command-line-tool--CommandLineTool+getOptions) ⇒ <code>object</code>
+        * [.getCli(definitions, [usageSections], [argv])](#module_command-line-tool--CommandLineTool+getCli) ⇒ <code>object</code>
 
 <a name="exp_module_command-line-tool--CommandLineTool"></a>
 
@@ -61,9 +57,9 @@ Stop the process with an error message.
 | [options.exitCode] | <code>number</code> | defaults to 1 |
 | [options.stack] | <code>boolean</code> | defaults to false |
 
-<a name="module_command-line-tool--CommandLineTool+getOptions"></a>
+<a name="module_command-line-tool--CommandLineTool+getCli"></a>
 
-#### tool.getOptions(definitions, usageSections) ⇒ <code>object</code>
+#### tool.getCli(definitions, [usageSections], [argv]) ⇒ <code>object</code>
 Parse the command-line options.
 
 **Kind**: instance method of <code>[CommandLineTool](#exp_module_command-line-tool--CommandLineTool)</code>  
@@ -71,7 +67,8 @@ Parse the command-line options.
 | Param | Type | Description |
 | --- | --- | --- |
 | definitions | <code>Array.&lt;OptionDefinitions&gt;</code> | to be passed to command-line-args |
-| usageSections | <code>Array.&lt;section&gt;</code> | to be passed to command-line-usage |
+| [usageSections] | <code>Array.&lt;section&gt;</code> | to be passed to command-line-usage |
+| [argv] | <code>Array.&lt;string&gt;</code> | If supplied, this `argv` array is parsed instead of `process.argv`. |
 
 
 * * *
