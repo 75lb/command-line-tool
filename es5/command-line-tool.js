@@ -36,27 +36,18 @@ var CommandLineTool = function () {
         if (err.code === 'EPIPE') {
           process.exit(0);
         } else {
-            this.printError(t.isString(err) ? err : options.stack ? err.stack : err.message, options);
-          }
+          this.printError(t.isString(err) ? err : options.stack ? err.stack : err.message, options);
+        }
       }
       process.exit(options.exitCode);
     }
   }, {
     key: 'getCli',
     value: function getCli(definitions, usageSections, argv) {
-      definitions = arrayify(definitions);
       var commandLineArgs = require('command-line-args');
       var commandLineUsage = require('command-line-usage');
-
       var usage = usageSections ? commandLineUsage(usageSections) : '';
-      var options = void 0;
-      try {
-        options = commandLineArgs(definitions, argv);
-      } catch (err) {
-        this.printError(err.name === 'UNKNOWN_OPTION' ? err.message : err);
-        console.error(usage);
-        this.halt();
-      }
+      var options = commandLineArgs(definitions, argv);
       return { options: options, usage: usage };
     }
   }]);
