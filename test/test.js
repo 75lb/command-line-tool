@@ -1,6 +1,5 @@
 var test = require('tape')
-var Tool = require('../')
-var tool = new Tool()
+var tool = require('../')
 
 test('.getCli', function(t){
   var definitions = [
