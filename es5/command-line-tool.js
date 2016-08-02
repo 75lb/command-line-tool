@@ -5,6 +5,7 @@ var ansi = require('ansi-escape-sequences');
 
 exports.stop = stop;
 exports.printError = printError;
+exports.printOutput = printOutput;
 exports.halt = halt;
 exports.getCli = getCli;
 
@@ -18,6 +19,15 @@ function stop(message) {
 function printError(message) {
   arrayify(message).forEach(function (msg) {
     console.error(ansi.format(msg, 'red'));
+  });
+}
+
+function printOutput(message) {
+  process.stdout.on('error', function (err) {
+    if (err.code === 'EPIPE') {}
+  });
+  arrayify(message).forEach(function (msg) {
+    console.log(ansi.format(msg));
   });
 }
 

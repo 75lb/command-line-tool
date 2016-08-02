@@ -9,46 +9,57 @@
 ## command-line-tool
 Some conventional operations used in command-line tools.
 
+**Example**  
+```js
+const tool = require('command-line-tool')
+```
 
 * [command-line-tool](#module_command-line-tool)
-    * [CommandLineTool](#exp_module_command-line-tool--CommandLineTool) ⏏
-        * [.stop([message])](#module_command-line-tool--CommandLineTool+stop)
-        * [.printError(message)](#module_command-line-tool--CommandLineTool+printError)
-        * [.halt([err], [options])](#module_command-line-tool--CommandLineTool+halt)
-        * [.getCli(definitions, [usageSections], [argv])](#module_command-line-tool--CommandLineTool+getCli) ⇒ <code>object</code>
+    * [.stop([message])](#module_command-line-tool.stop)
+    * [.printError(message)](#module_command-line-tool.printError)
+    * [.printOutput(message)](#module_command-line-tool.printOutput)
+    * [.halt([err], [options])](#module_command-line-tool.halt)
+    * [.getCli(definitions, [usageSections], [argv])](#module_command-line-tool.getCli) ⇒ <code>object</code>
 
-<a name="exp_module_command-line-tool--CommandLineTool"></a>
+<a name="module_command-line-tool.stop"></a>
 
-### CommandLineTool ⏏
-**Kind**: Exported class  
-<a name="module_command-line-tool--CommandLineTool+stop"></a>
-
-#### tool.stop([message])
+### tool.stop([message])
 Print the supplied messages then stop the process (no exit code).
 
-**Kind**: instance method of <code>[CommandLineTool](#exp_module_command-line-tool--CommandLineTool)</code>  
+**Kind**: static method of <code>[command-line-tool](#module_command-line-tool)</code>  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | [message] | <code>string</code> &#124; <code>Array.&lt;string&gt;</code> | One or more messages to be written to stderr before exiting. May contain `ansi.format` markup. |
 
-<a name="module_command-line-tool--CommandLineTool+printError"></a>
+<a name="module_command-line-tool.printError"></a>
 
-#### tool.printError(message)
+### tool.printError(message)
 Prints one or more strings in red to stderr.
 
-**Kind**: instance method of <code>[CommandLineTool](#exp_module_command-line-tool--CommandLineTool)</code>  
+**Kind**: static method of <code>[command-line-tool](#module_command-line-tool)</code>  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | message | <code>string</code> &#124; <code>Array.&lt;string&gt;</code> | input message(s) |
 
-<a name="module_command-line-tool--CommandLineTool+halt"></a>
+<a name="module_command-line-tool.printOutput"></a>
 
-#### tool.halt([err], [options])
+### tool.printOutput(message)
+Prints one or more strings to stdout. Catches unwanted EPIPE error.
+
+**Kind**: static method of <code>[command-line-tool](#module_command-line-tool)</code>  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| message | <code>string</code> &#124; <code>Array.&lt;string&gt;</code> | input message(s) |
+
+<a name="module_command-line-tool.halt"></a>
+
+### tool.halt([err], [options])
 Stop the process with an error message.
 
-**Kind**: instance method of <code>[CommandLineTool](#exp_module_command-line-tool--CommandLineTool)</code>  
+**Kind**: static method of <code>[command-line-tool](#module_command-line-tool)</code>  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -57,12 +68,12 @@ Stop the process with an error message.
 | [options.exitCode] | <code>number</code> | defaults to 1 |
 | [options.stack] | <code>boolean</code> | defaults to false |
 
-<a name="module_command-line-tool--CommandLineTool+getCli"></a>
+<a name="module_command-line-tool.getCli"></a>
 
-#### tool.getCli(definitions, [usageSections], [argv]) ⇒ <code>object</code>
+### tool.getCli(definitions, [usageSections], [argv]) ⇒ <code>object</code>
 Parse the command-line options.
 
-**Kind**: instance method of <code>[CommandLineTool](#exp_module_command-line-tool--CommandLineTool)</code>  
+**Kind**: static method of <code>[command-line-tool](#module_command-line-tool)</code>  
 
 | Param | Type | Description |
 | --- | --- | --- |
