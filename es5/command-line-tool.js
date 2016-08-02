@@ -28,7 +28,7 @@ function halt(err, options) {
       process.exit(0);
     } else {
       var t = require('typical');
-      this.printError(t.isString(err) ? err : options.stack ? err.stack : err.message, options);
+      printError(t.isString(err) ? err : options.stack ? err.stack : err.message, options);
     }
   }
   process.exit(options.exitCode);
