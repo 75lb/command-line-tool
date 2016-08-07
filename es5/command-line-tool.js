@@ -10,9 +10,7 @@ exports.halt = halt;
 exports.getCli = getCli;
 
 function stop(message) {
-  arrayify(message).forEach(function (msg) {
-    console.error(ansi.format(msg));
-  });
+  printOutput(message);
   process.exit(0);
 }
 
