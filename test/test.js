@@ -1,7 +1,10 @@
-var test = require('tape')
+var TestRunner = require('test-runner')
 var tool = require('../')
+var a = require('core-assert')
 
-test('.getCli', function(t){
+var runner = new TestRunner()
+
+runner.test('.getCli', function(t){
   var definitions = [
     { name: 'yeah', type: String }
   ]
@@ -9,7 +12,6 @@ test('.getCli', function(t){
     { header: 'Yeah', content: 'Test' }
   ]
   var cli = tool.getCli(definitions, sections, [ '--yeah', 'test' ])
-  t.deepEqual(cli.options, { yeah: 'test' })
-  t.ok(/Test/.test(cli.usage))
-  t.end()
+  a.deepEqual(cli.options, { yeah: 'test' })
+  a.ok(/Test/.test(cli.usage))
 })
