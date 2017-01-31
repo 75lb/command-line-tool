@@ -1,17 +1,19 @@
-var TestRunner = require('test-runner')
-var tool = require('../')
-var a = require('core-assert')
+'use strict'
+const TestRunner = require('test-runner')
+const tool = require('../')
+const a = require('assert')
 
-var runner = new TestRunner()
+const runner = new TestRunner()
 
 runner.test('.getCli', function(t){
-  var definitions = [
+  const definitions = [
     { name: 'yeah', type: String }
   ]
-  var sections = [
+  const sections = [
     { header: 'Yeah', content: 'Test' }
   ]
-  var cli = tool.getCli(definitions, sections, [ '--yeah', 'test' ])
+  const argv = [ '--yeah', 'test' ]
+  const cli = tool.getCli(definitions, sections, { argv })
   a.deepEqual(cli.options, { yeah: 'test' })
   a.ok(/Test/.test(cli.usage))
 })
