@@ -15,14 +15,14 @@
     "docs": "jsdoc2md -t jsdoc2md/README.hbs lib/*.js > README.md; echo"
   },
   "dependencies": {
-    "ansi-escape-sequences": "^3.0.0",
-    "array-back": "^1.0.4",
-    "command-line-args": "^4.0.1",
-    "command-line-usage": "^4.0.0",
-    "typical": "^2.6.0"
+    "ansi-escape-sequences": "^4.0.0",
+    "array-back": "^2.0.0",
+    "command-line-args": "^5.0.0",
+    "command-line-usage": "^4.1.0",
+    "typical": "^2.6.1"
   },
   "devDependencies": {
-    "jsdoc-to-markdown": "^2.0.1",
-    "test-runner": "^0.3.0"
+    "jsdoc-to-markdown": "^3.0.4",
+    "test-runner": "^0.5.0"
   }
 }
